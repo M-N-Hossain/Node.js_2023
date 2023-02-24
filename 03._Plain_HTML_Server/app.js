@@ -5,10 +5,10 @@ const app = express();
 app.use(express.static("public"));
 
 const tanks = [
-  {name: "Tiger", nationality: "Germany"},
-  {name: "Leopard", nationality: "Germany"},
-  {name: "Royal Bengal", nationality: "Bangladesh"}
-]
+  { name: "Tiger", nationality: "Germany" },
+  { name: "Leopard", nationality: "Germany" },
+  { name: "Royal Bengal", nationality: "Bangladesh" },
+];
 
 let visitorCount = 0;
 
@@ -30,22 +30,67 @@ app.get("/visitors", (req, res) => {
   res.sendFile(__dirname + "/public/visitors/visitors.html");
 });
 
-
 // Fetching
 
 app.get("/api/tanks", (req, res) => {
-  res.send({data : tanks});
+  res.send({ data: tanks });
 });
 
 app.get("/api/visitors", (req, res) => {
-  res.send({data : visitorCount});
+  res.send({ data: visitorCount });
 });
 
 app.put("/api/visitors", (req, res) => {
-  res.send({data : ++visitorCount});
+  res.send({ data: ++visitorCount });
 });
 
+// time
+app.get("/time", (req, res) => {
+  res.send({
+    time: new Date(),
+  });
+});
 
+// week days start with sunday
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+app.get("/time/day", (req, res) => {
+  const date = new Date();
+  res.send({
+    // date.getDay() gives a index number and  the index start with 0
+    day: days[date.getDay()],
+  });
+});
+
+app.get("/time/month", (req, res) => {
+  const date = new Date();
+  res.send({
+    // date.getMonth() gives a index number and  the index start with 0
+    month: months[date.getMonth()],
+  });
+});
 
 const PORT = 8080;
 app.listen(PORT, (error) => {
