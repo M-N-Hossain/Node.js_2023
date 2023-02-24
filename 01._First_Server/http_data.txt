@@ -1,0 +1,6 @@
+anatomy of an url
+
+
+protocol - domain - endpoint -  path variable
+http://google.com/kickdinosaur/:id?size=1200
+                                query string
