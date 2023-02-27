@@ -1,0 +1,61 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(215, 223, 228);
+}
+.dateAndTimeWrapper{
+    width: 40%;
+    height: auto;
+    align-items: center;
+    position: relative;
+    top: 15px;
+    left: 30%;
+
+}
+.time{
+    background-color:cadetblue;
+    height: 70px;
+    font-size: 50px;
+    color: #033d4f;
+    text-align: center;
+    position: relative;
+    width: 70%;
+    top: 10px;
+    left: 15%;
+    
+}
+
+.date{
+    background-color:rgb(164, 193, 194);
+    font-size: 25px;
+    color: #158d8f;
+    text-align: center;
+    position: relative;
+    width: 45%;
+    left: 55%;
+}
+
+.allEmployeeWrapperDiv{
+    
+    position: relative;
+    top: 50px;
+    left: 25%;
+    width: 50%;
+    text-align: center;
+}
+/* .allEmployeeWrapperDiv .employee p span{
+    align-items: center;
+}
+.nameS{
+    margin: 3%;
+} */
+
+table{
+    background-color: #158d8f;
+    position: relative;
+}
+th{
+    border: 1px solid black;
+    border-right: none;
+    width: 17%;
+}
