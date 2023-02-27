@@ -12,15 +12,17 @@ const tanks = [
 
 let visitorCount = 0;
 
-// console.log(__dirname);
+
+
+//  Pages
+
+
 app.get("/", (req, res) => {
   res.sendFile(
     // "C:/Users/nhnah/Code/Node.js_2023/03._Plain_HTML_Server/frontpage.html"
     __dirname + "/public/frontpage/frontpage.html"
   );
 });
-
-//  Pages
 
 app.get("/tanks", (req, res) => {
   res.sendFile(__dirname + "/public/tanks/tanks.html");
@@ -29,6 +31,7 @@ app.get("/tanks", (req, res) => {
 app.get("/visitors", (req, res) => {
   res.sendFile(__dirname + "/public/visitors/visitors.html");
 });
+
 
 // Fetching
 
