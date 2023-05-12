@@ -8,24 +8,22 @@ fetch("http://localhost:8080/api/tanks")
   .then((result) => {
     const tankWrapperDiv = document.querySelector(".tanks-wrapper");
 
-    result.data.forEach(tank => {
-        const tankDiv = document.createElement("div");
+    result.data.forEach((tank) => {
+      const tankDiv = document.createElement("div");
 
-        const tankNameP = document.createElement("p");
-        tankNameP.innerText = tank.name || "";
-        const tankNationalityP = document.createElement("p");
-        tankNationalityP.innerText = tank.nationality || "";
-    
-        tankDiv.appendChild(tankNameP);
-        tankDiv.appendChild(tankNationalityP);
+      const tankNameP = document.createElement("p");
+      tankNameP.innerText = tank.name || "";
+      const tankNationalityP = document.createElement("p");
+      tankNationalityP.innerText = tank.nationality || "";
 
-        const breakBr = document.createElement("br");
-        tankDiv.appendChild(breakBr);
+      tankDiv.appendChild(tankNameP);
+      tankDiv.appendChild(tankNationalityP);
 
-        tankWrapperDiv.appendChild(tankDiv);
+      const breakBr = document.createElement("br");
+      tankDiv.appendChild(breakBr);
+
+      tankWrapperDiv.appendChild(tankDiv);
     });
-
-  
   });
 
 

@@ -1,21 +1,18 @@
 const express = require("express");
 const app = express();
 
+import guardsRouter from "./routers/guardsRouter.js"
+import tanksRouter from "./routers/tanksRouter.js"
+import visitorsRouter from "./routers/visitorsRouter.js"
+
 // givig access to static files to express on secuirity purpose
 app.use(express.static("public"));
 
-const tanks = [
-  { name: "Tiger", nationality: "Germany" },
-  { name: "Leopard", nationality: "Germany" },
-  { name: "Royal Bengal", nationality: "Bangladesh" },
-];
+const tanksUtil = require("./util/tanks.js");
 
 let visitorCount = 0;
 
-
-
 //  Pages
-
 
 app.get("/", (req, res) => {
   res.sendFile(
@@ -24,28 +21,34 @@ app.get("/", (req, res) => {
   );
 });
 
-app.get("/tanks", (req, res) => {
+router.get("/tanks", (req, res) => {
   res.sendFile(__dirname + "/public/tanks/tanks.html");
 });
 
-app.get("/visitors", (req, res) => {
+router.get("/visitors", (req, res) => {
   res.sendFile(__dirname + "/public/visitors/visitors.html");
 });
 
+router.get("/museumGuards", (req, res) => {
+  res.sendFile(__dirname + "/public/museumGuards/museumGuards.html");
+});
+
+
+
+app.get("/proxy", (req, res) => {
+  const text = "";
+  fetch("https://www.google.com")
+    .then((response) => response.text())
+    .then((result) => res.send(result));
+});
 
 // Fetching
 
-app.get("/api/tanks", (req, res) => {
-  res.send({ data: tanks });
-});
+app.use(tanksRouter);
+app.use(guardsRouter);
+app.use(visitorsRouter);
 
-app.get("/api/visitors", (req, res) => {
-  res.send({ data: visitorCount });
-});
 
-app.put("/api/visitors", (req, res) => {
-  res.send({ data: ++visitorCount });
-});
 
 // time
 app.get("/time", (req, res) => {
@@ -94,6 +97,8 @@ app.get("/time/month", (req, res) => {
     month: months[date.getMonth()],
   });
 });
+
+
 
 const PORT = 8080;
 app.listen(PORT, (error) => {
